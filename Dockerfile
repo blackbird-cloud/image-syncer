@@ -1,5 +1,11 @@
-FROM alpine:3.18.4
+FROM debian:stable-slim
 
-RUN apk add skopeo
+RUN apt update
+RUN apt install -y skopeo amazon-ecr-credential-helper curl zip
+RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+RUN unzip awscliv2.zip
+RUN ./aws/install
+
+COPY . /root
 
 CMD [ "skopeo" ]
