@@ -8,4 +8,6 @@ RUN ./aws/install
 
 COPY . /root
 
-CMD [ "skopeo" ]
+RUN chmod +x /root/script.sh
+
+CMD [ "/root/script.sh" ]
